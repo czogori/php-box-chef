@@ -1,0 +1,27 @@
+{
+  "name": "web",
+  "description": "The base role for systems that serve web server",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+    "apache": {
+      "listen_ports": ["80", "443"]
+    },
+    "postgresql": {
+      "password": {
+        "postgres": "postgres"
+      }
+    }
+  },
+  "run_list": [
+    "recipe[apache2]",
+    "recipe[apache2::mod_php5]",
+    "recipe[postgresql]",
+    "recipe[postgresql::server]",
+    "recipe[php]",
+    "recipe[php::module_pgsql]",
+    "recipe[composer]",
+    "recipe[git]",
+    "recipe[vim]"
+  ]
+}
